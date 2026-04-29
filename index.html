@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)file:///Users/meganmarfione/Downloads/amendment_form_2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amendment Drafting Form</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #faf8f3;
+    --paper-2: #f3eee2;
+    --line: #2a2a2a;
+    --line-soft: #c9c0a8;
+    --accent: #6b1d1d;
+    --accent-soft: #f0e8d4;
+    --warn: #8b5a00;
+    --warn-bg: #fdf6e3;
+    --muted: #6e6657;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.5; min-height: 100vh; }
+  .layout { display: grid; grid-template-columns: minmax(420px, 1fr) minmax(500px, 1.2fr); min-height: 100vh; }
+  @media (max-width: 980px) { .layout { grid-template-columns: 1fr; } .preview-pane { border-left: none !important; border-top: 1px solid var(--line); } }
+  .form-pane { padding: 40px 44px 80px; background: var(--paper); overflow-y: auto; max-height: 100vh; }
+  .form-pane::-webkit-scrollbar { width: 8px; }
+  .form-pane::-webkit-scrollbar-track { background: var(--paper-2); }
+  .form-pane::-webkit-scrollbar-thumb { background: var(--line-soft); border-radius: 4px; }
+  .header { border-bottom: 2px solid var(--ink); padding-bottom: 18px; margin-bottom: 32px; }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  h1 { font-family: var(--serif); font-size: 38px; font-weight: 600; line-height: 1.05; letter-spacing: -0.01em; }
+  .subtitle { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--muted); margin-top: 6px; }
+  section.step { margin-bottom: 36px; padding-top: 4px; }
+  .step-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--line-soft); }
+  .step-num { font-family: var(--serif); font-size: 32px; font-weight: 500; color: var(--accent); line-height: 1; min-width: 32px; }
+  .step-title { font-family: var(--serif); font-size: 22px; font-weight: 600; flex: 1; }
+  .step-desc { font-size: 13px; color: var(--muted); margin-top: -10px; margin-bottom: 16px; font-style: italic; }
+  .field { margin-bottom: 14px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink); margin-bottom: 5px; }
+  input[type="text"], input[type="date"], textarea, select { width: 100%; padding: 9px 12px; border: 1px solid var(--line-soft); background: #fff; font-family: var(--sans); font-size: 14px; color: var(--ink); border-radius: 2px; transition: border-color 0.15s, box-shadow 0.15s; }
+  input[type="text"]:focus, input[type="date"]:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(107, 29, 29, 0.1); }
+  textarea { resize: vertical; min-height: 60px; font-family: var(--sans); }
+  .checkbox-card { display: block; border: 1px solid var(--line-soft); background: #fff; border-radius: 2px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+  .checkbox-card:hover { border-color: var(--accent); }
+  .checkbox-card.checked { border-color: var(--accent); background: var(--accent-soft); }
+  .checkbox-card-head { display: flex; align-items: center; gap: 10px; }
+  .checkbox-card input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
+  .checkbox-card-title { font-family: var(--serif); font-size: 16px; font-weight: 600; }
+  .checkbox-card-fields { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line-soft); }
+  .checkbox-card.checked .checkbox-card-fields { display: block; }
+  .radio-group { display: flex; flex-direction: column; gap: 8px; }
+  .radio-option { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--line-soft); background: #fff; cursor: pointer; border-radius: 2px; transition: border-color 0.15s, background 0.15s; }
+  .radio-option:hover { border-color: var(--accent); }
+  .radio-option input[type="radio"] { accent-color: var(--accent); margin-top: 2px; }
+  .radio-option.checked { border-color: var(--accent); background: var(--accent-soft); }
+  .radio-label { font-family: var(--serif); font-size: 15px; font-weight: 600; }
+  .radio-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .legal-flag { margin-top: 12px; padding: 12px 14px; background: var(--warn-bg); border-left: 3px solid var(--warn); border-radius: 2px; font-size: 13px; }
+  .legal-flag strong { color: var(--warn); }
+  .legal-flag.active { background: #fef3cd; border-left-color: #b45309; }
+  .actions { position: sticky; bottom: 0; background: linear-gradient(to top, var(--paper) 70%, rgba(250, 248, 243, 0)); padding: 24px 0 8px; margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
+  button { font-family: var(--sans); font-size: 13px; font-weight: 600; padding: 11px 20px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer; border-radius: 2px; letter-spacing: 0.02em; transition: transform 0.1s, box-shadow 0.15s; }
+  button:hover { transform: translateY(-1px); box-shadow: 0 3px 0 var(--accent); }
+  button:active { transform: translateY(0); }
+  button.secondary { background: transparent; color: var(--ink); }
+  button.secondary:hover { box-shadow: 0 3px 0 var(--line-soft); }
+  button.accent { background: var(--accent); border-color: var(--accent); }
+  .preview-pane { background: #fff; border-left: 1px solid var(--line); overflow-y: auto; max-height: 100vh; position: relative; }
+  .preview-header { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 1px solid var(--line-soft); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
+  .preview-header-title { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .preview-flag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; background: var(--accent-soft); color: var(--accent); }
+  .preview-flag.warn { background: #fef3cd; color: #b45309; }
+  .document { padding: 60px 64px 100px; font-family: var(--serif); font-size: 15px; line-height: 1.65; color: var(--ink); max-width: 760px; }
+  @media (max-width: 600px) { .document { padding: 40px 28px; } }
+  .doc-title-block { text-align: center; margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--line-soft); }
+  .doc-title { font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.3; margin-bottom: 10px; }
+  .doc-subtitle { font-size: 16px; font-style: italic; margin-bottom: 6px; }
+  .doc-parties { font-size: 16px; font-weight: 600; margin-top: 10px; }
+  .doc-study { font-size: 14px; color: var(--muted); margin-top: 6px; }
+  .document p { margin-bottom: 14px; text-align: justify; }
+  .document .recital { margin-bottom: 14px; text-align: justify; text-indent: 0; }
+  .document .clause { margin-bottom: 18px; text-align: justify; }
+  .document .clause-num { font-weight: 700; margin-right: 6px; }
+  .doc-section-break { margin: 28px 0; }
+  .signature-block { margin-top: 30px; page-break-inside: avoid; }
+  .sig-line { display: block; border-bottom: 1px solid var(--ink); height: 28px; margin: 6px 0; width: 80%; }
+  .sig-meta { font-size: 14px; line-height: 1.7; }
+  .sig-meta .sig-label { font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 0.04em; }
+  .placeholder { background: #fff4d6; color: #8b5a00; padding: 1px 4px; border-radius: 2px; font-family: var(--mono); font-size: 12px; font-style: normal; }
+  @media print {
+    body { background: #fff; }
+    .form-pane, .preview-header { display: none; }
+    .layout { grid-template-columns: 1fr; }
+    .preview-pane { border: none; max-height: none; overflow: visible; }
+    .document { padding: 0.5in; max-width: 100%; font-size: 12pt; }
+    .doc-title-block { page-break-after: avoid; }
+    .signature-block { page-break-inside: avoid; }
+  }
+  .help-text { font-size: 11px; color: var(--muted); margin-top: 4px; font-style: italic; }
+  details { margin-bottom: 14px; }
+  summary { cursor: pointer; font-family: var(--serif); font-size: 14px; font-weight: 600; padding: 8px 0; color: var(--accent); user-select: none; }
+  summary:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <div class="form-pane">
+    <div class="header">
+      <div class="eyebrow">Contract Drafting · Internal Use</div>
+      <h1>Amendment Generator</h1>
+      <div class="subtitle">Populate, select, preview, export.</div>
+    </div>
+
+    <form id="form" autocomplete="off">
+
+      <section class="step">
+        <div class="step-head">
+          <div class="step-num">1</div>
+          <div class="step-title">Header &amp; Deal Variables</div>
+        </div>
+        <div class="step-desc">Populate only the placeholders needed for this deal.</div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Amendment Number</label>
+            <input type="text" name="amendmentNumber" placeholder="e.g., 1, 2, 3">
+          </div>
+          <div class="field">
+            <label>Ordinal</label>
+            <select name="ordinal">
+              <option value="">—</option>
+              <option value="First">First</option>
+              <option value="Second">Second</option>
+              <option value="Third">Third</option>
+              <option value="Fourth">Fourth</option>
+              <option value="Fifth">Fifth</option>
+              <option value="Sixth">Sixth</option>
+              <option value="Seventh">Seventh</option>
+              <option value="Eighth">Eighth</option>
+              <option value="Ninth">Ninth</option>
+              <option value="Tenth">Tenth</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Agreement Title</label>
+          <input type="text" name="agreementTitle" placeholder="e.g., Clinical Trial Agreement">
+        </div>
+
+        <div class="field">
+          <label>Study / Project / Agreement Number</label>
+          <input type="text" name="studyNumber" placeholder="e.g., Study #ABC-2024-001">
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Date of Last Signature</label>
+            <input type="date" name="dateOfLastSignature">
+          </div>
+          <div class="field">
+            <label>Effective Date / IRB Approval Date</label>
+            <input type="date" name="effectiveDate">
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Sponsor Name</label>
+            <input type="text" name="sponsorName" placeholder="e.g., Acme Pharma, Inc.">
+          </div>
+          <div class="field">
+            <label>Original Agreement Date</label>
+            <input type="date" name="originalAgreementDate">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Institution Legal Name</label>
+          <input type="text" name="institutionLegalName" placeholder="Full legal name">
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Entity Description</label>
+            <input type="text" name="entityDescription" placeholder="e.g., a Delaware nonprofit corporation">
+          </div>
+          <div class="field">
+            <label>Institution Operating Name</label>
+            <input type="text" name="institutionOperatingName" placeholder="d/b/a name">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Institution (Short Name for References)</label>
+          <input type="text" name="institutionName" placeholder="Used in signature block">
+        </div>
+      </section>
+
+      <section class="step">
+        <div class="step-head">
+          <div class="step-num">2</div>
+          <div class="step-title">Recitals</div>
+        </div>
+        <div class="step-desc">Select only the recitals that match the amendment purpose.</div>
+
+        <div class="checkbox-card checked" style="opacity: 0.7; cursor: not-allowed;">
+          <div class="checkbox-card-head">
+            <input type="checkbox" checked="" disabled="">
+            <div class="checkbox-card-title">Original Agreement Recital <span style="font-size: 11px; color: var(--muted); font-family: var(--sans); font-weight: 400;">— always included</span></div>
+          </div>
+        </div>
+
+        <label class="checkbox-card">
+          <div class="checkbox-card-head">
+            <input type="checkbox" name="recital_pi">
+            <div class="checkbox-card-title">Principal Investigator Change</div>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <div class="checkbox-card-head">
+            <input type="checkbox" name="recital_exhibitA_update">
+            <div class="checkbox-card-title">Update Exhibit A (Budget / Scope)</div>
+          </div>
+          <div class="checkbox-card-fields">
+            <div class="field">
+              <label>Exhibit Description</label>
+              <input type="text" name="exhibitDescription" placeholder="e.g., Study Budget">
+            </div>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <div class="checkbox-card-head">
+            <input type="checkbox" name="recital_addressName">
+            <div class="checkbox-card-title">Update Sponsor / Institution Address or Legal Name</div>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <div class="checkbox-card-head">
+            <input type="checkbox" name="recital_subjectIncrease">
+            <div class="checkbox-card-title">Increase Subject Enrollment</div>
+          </div>
+          <div class="checkbox-card-fields">
+            <div class="field-row">
+              <div class="field">
+                <label>Original Subject Number</label>
+                <input type="text" name="originalSubjectNumber" placeholder="e.g., 50">
+              </div>
+              <div class="field">
+                <label>New Subject Number</label>
+                <input type="text" name="newSubjectNumber" placeholder="e.g., 75">
+              </div>
+            </div>
+          </div>
+        </label>
+      </section>
+
+      <section class="step">
+        <div class="step-head">
+          <div class="step-num">3</div>
+          <div class="step-title">Therefore Clause</div>
+        </div>
+        <div class="step-desc">Standard "NOW THEREFORE" language is inserted automatically.</div>
+        <div style="padding: 14px 16px; background: var(--accent-soft); border-radius: 2px; font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink);">
+          Auto-included in the preview — no input needed.
+        </div>
+      </section>
+
+      <section class="step">
+        <div class="step-head">
+          <div class="step-num">4</div>
+          <div class="step-title">Operative Clauses</div>
+        </div>
+        <div class="step-desc">Auto-selected based on recitals chosen in Step 2. Refine if needed — sections renumber automatically.</div>
+
+        <label class="checkbox-card">
+          <div class="checkbox-card-head">
+            <input type="checkbox" name="clause_pi">
+            <div class="checkbox-card-title">Principal Investigator Change</div>
+          </div>
+          <div class="checkbox-card-fields">
+            <div class="field-row">
+              <div class="field">
+                <label>Prior PI Name</label>
+                <input type="text" name="priorPIName">
+              </div>
+              <div class="field">
+                <label>New PI Name</label>
+                <input type="text" name="newPIName">
+              </div>
+            </div>
+            <div class="field">
+              <label>IRB Approval Date</label>
+              <input type="date" name="irbApprovalDate">
+            </div>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <div class="checkbox-card-head">
+            <input type="checkbox" name="clause_exhibitAUnits">
+            <div class="checkbox-card-title">Exhibit A — Additional Units / Fees</div>
+          </div>
+          <div class="checkbox-card-fields">
+            <div class="field">
+              <label>Description of Additional Units / Fees</label>
+              <textarea name="additionalUnitsDescription" placeholder="Describe the units/fees being added"></textarea>
+            </div>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <div class="checkbox-card-head">
+            <input type="checkbox" name="clause_nameChange">
+            <div class="checkbox-card-title">Name Change</div>
+          </div>
+          <div class="checkbox-card-fields">
+            <div class="field">
+              <label>Amendment Effective Date</label>
+              <input type="date" name="amendmentEffectiveDate">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>Former Legal Name</label>
+                <input type="text" name="formerLegalName">
+              </div>
+              <div class="field">
+                <label>New Legal Name</label>
+                <input type="text" name="newLegalName">
+              </div>
+            </div>
+            <div class="field">
+              <label>Short Form / Prior Defined Name</label>
+              <input type="text" name="shortFormPriorName" placeholder="The defined term in the original agreement">
+            </div>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <div class="checkbox-card-head">
+            <input type="checkbox" name="clause_exhibitAReplace">
+            <div class="checkbox-card-title">Exhibit A Replacement — Subject Increase</div>
+          </div>
+          <div class="checkbox-card-fields">
+            <div class="help-text">Uses the Original / New Subject Numbers from Step 2.</div>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <div class="checkbox-card-head">
+            <input type="checkbox" name="clause_addressChange">
+            <div class="checkbox-card-title">Address Change</div>
+          </div>
+          <div class="checkbox-card-fields">
+            <div class="field">
+              <label>Party Name</label>
+              <input type="text" name="partyName" placeholder="Sponsor or Institution name">
+            </div>
+            <div class="field">
+              <label>Prior Address</label>
+              <textarea name="priorAddress"></textarea>
+            </div>
+            <div class="field">
+              <label>New Address</label>
+              <textarea name="newAddress"></textarea>
+            </div>
+          </div>
+        </label>
+      </section>
+
+      <section class="step">
+        <div class="step-head">
+          <div class="step-num">5</div>
+          <div class="step-title">Closing &amp; Signature Block</div>
+        </div>
+        <div class="step-desc">Standard closing language is inserted. Choose the appropriate signature block.</div>
+
+        <label style="display: block; margin-bottom: 12px;">Signature Block Variant</label>
+        <div class="radio-group">
+          <label class="radio-option checked">
+            <input type="radio" name="sigVariant" value="standard" checked="">
+            <div>
+              <div class="radio-label">Standard</div>
+              <div class="radio-desc">Sponsor + Institution sign directly.</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="sigVariant" value="agent">
+            <div>
+              <div class="radio-label">With Institution Agent</div>
+              <div class="radio-desc">Institution signs through a designated agent.</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="sigVariant" value="withPI">
+            <div>
+              <div class="radio-label">Standard + Principal Investigator Acknowledgment</div>
+              <div class="radio-desc">Adds the PI Read-and-Acknowledged block.</div>
+            </div>
+          </label>
+        </div>
+
+        <details style="margin-top: 18px;">
+          <summary>Signature names &amp; titles</summary>
+          <div style="margin-top: 10px;">
+            <div class="field-row">
+              <div class="field">
+                <label>Sponsor Signatory Name</label>
+                <input type="text" name="sponsorSigName">
+              </div>
+              <div class="field">
+                <label>Sponsor Signatory Title</label>
+                <input type="text" name="sponsorSigTitle">
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>Institution Signatory Name</label>
+                <input type="text" name="institutionSigName">
+              </div>
+              <div class="field">
+                <label>Institution Signatory Title</label>
+                <input type="text" name="institutionSigTitle">
+              </div>
+            </div>
+            <div class="field" id="agentField" style="display: none;">
+              <label>Agent Name</label>
+              <input type="text" name="agentName">
+            </div>
+            <div class="field" id="piAckField" style="display: none;">
+              <label>Principal Investigator Name (for Acknowledgment)</label>
+              <input type="text" name="piAckName">
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="step">
+        <div class="step-head">
+          <div class="step-num">6</div>
+          <div class="step-title">Legal Review</div>
+        </div>
+        <div class="step-desc">Flag if template language has been changed substantively.</div>
+
+        <label class="checkbox-card" id="legalReviewCard">
+          <div class="checkbox-card-head">
+            <input type="checkbox" name="substantiveChange">
+            <div class="checkbox-card-title">Template language was substantively changed</div>
+          </div>
+        </label>
+
+        <div class="legal-flag" id="legalFlag">
+          <strong>Note:</strong> If you altered standard language beyond filling placeholders or selecting menu items, this draft must be routed to legal review before execution.
+        </div>
+      </section>
+
+      <div class="actions">
+        <button type="button" id="downloadHtml" class="accent">Download as Document</button>
+        <button type="button" id="printBtn">Print / Save PDF</button>
+        <button type="button" id="copyText" class="secondary">Copy as Text</button>
+        <button type="button" id="resetBtn" class="secondary">Reset Form</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="preview-pane">
+    <div class="preview-header">
+      <div class="preview-header-title">Live Preview</div>
+      <div id="reviewFlag" class="preview-flag" style="display: none;">Pending Legal Review</div>
+    </div>
+    <div class="document" id="document"><div class="doc-title-block"><div class="doc-title">Amendment #<span class="placeholder">[#]</span> to <span class="placeholder">[AGREEMENT TITLE]</span></div><div class="doc-subtitle">By and Between</div><div class="doc-parties"><span class="placeholder">[SPONSOR NAME]</span> and <span class="placeholder">[INSTITUTION NAME]</span></div><div class="doc-study">For <span class="placeholder">[STUDY / PROJECT / AGREEMENT NUMBER]</span></div></div><p>This <span class="placeholder">[ORDINAL]</span> Amendment (“Amendment #<span class="placeholder">[#]</span>”) to the <span class="placeholder">[AGREEMENT TITLE]</span> (“Agreement”) is entered into as of <span class="placeholder">[DATE OF LAST SIGNATURE]</span> and is effective as of <span class="placeholder">[EFFECTIVE DATE / IRB APPROVAL DATE]</span> (hereinafter, “Effective Date”) by and between <span class="placeholder">[SPONSOR NAME]</span> (“Sponsor”) and <span class="placeholder">[INSTITUTION LEGAL NAME]</span>, a <span class="placeholder">[ENTITY DESCRIPTION]</span>, for and on behalf of <span class="placeholder">[INSTITUTION OPERATING NAME]</span> (“Institution”). Each party may be referred to individually as a “Party” and collectively as the “Parties.”</p><p class="recital">WHEREAS, the Parties entered into the <span class="placeholder">[AGREEMENT TITLE]</span> (“Agreement”) on <span class="placeholder">[ORIGINAL AGREEMENT DATE]</span>.</p><p>NOW THEREFORE, in exchange for the mutual promises contained herein and for other good and valuable consideration, the receipt and adequacy of which is hereby acknowledged, the Parties hereto agree as follows:</p><p style="color: var(--muted); font-style: italic;">[Select operative clauses in Step 4]</p><div class="doc-section-break"></div><p>Except as set forth in this Amendment #<span class="placeholder">[#]</span>, all other terms of the Agreement are unaffected and shall continue in full force and effect. If there is a conflict between this Amendment #<span class="placeholder">[#]</span> and the Agreement respecting the subject matter herein, the terms of this Amendment #<span class="placeholder">[#]</span> will prevail.</p><p>This Amendment #<span class="placeholder">[#]</span> may be executed in one or more counterparts, each of which together shall constitute one and the same Amendment #<span class="placeholder">[#]</span>. For purposes of executing this Amendment #<span class="placeholder">[#]</span>, a facsimile, electronically signed, or electronic transmission copy (including a PDF image delivered via email) of this Amendment #<span class="placeholder">[#]</span>, including the signature pages, will be deemed an original.</p><p style="margin-top: 24px;">IN WITNESS WHEREOF, the parties hereto, intending to be legally bound, have executed this Amendment #<span class="placeholder">[#]</span> by proper persons thereunto duly authorized.</p><div class="signature-block sig-meta"><div class="sig-label">Sponsor: <span class="placeholder">[SPONSOR NAME]</span></div><div>By: <span class="sig-line"></span></div><div>Name: <span class="placeholder">[SPONSOR SIGNATORY NAME]</span></div><div>Title: <span class="placeholder">[SPONSOR SIGNATORY TITLE]</span></div><div>Date: <span class="sig-line"></span></div></div><div class="signature-block sig-meta"><div class="sig-label">Institution: <span class="placeholder">[INSTITUTION NAME]</span></div><div>By: <span class="sig-line"></span></div><div>Name: <span class="placeholder">[INSTITUTION SIGNATORY NAME]</span></div><div>Title: <span class="placeholder">[INSTITUTION SIGNATORY TITLE]</span></div><div>Date: <span class="sig-line"></span></div></div></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const form = document.getElementById('form');
+  const doc = document.getElementById('document');
+  const reviewFlag = document.getElementById('reviewFlag');
+  const agentField = document.getElementById('agentField');
+  const piAckField = document.getElementById('piAckField');
+  const legalFlag = document.getElementById('legalFlag');
+  const legalReviewCard = document.getElementById('legalReviewCard');
+
+  function val(name) {
+    const el = form.elements[name];
+    if (!el) return '';
+    if (el.type === 'checkbox') return el.checked;
+    if (el.type === 'radio' || (el.length && el[0] && el[0].type === 'radio')) {
+      const checked = form.querySelector('input[name="' + name + '"]:checked');
+      return checked ? checked.value : '';
+    }
+    return (el.value || '').trim();
+  }
+
+  function fmtDate(iso) {
+    if (!iso) return '';
+    const parts = iso.split('-');
+    if (parts.length !== 3) return iso;
+    const d = new Date(parts[0], parts[1] - 1, parts[2]);
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function v(value, placeholder) {
+    if (value && String(value).trim()) return escapeHtml(String(value));
+    return '<span class="placeholder">' + placeholder + '</span>';
+  }
+
+  function autoOrdinal() {
+    const numEl = form.elements['amendmentNumber'];
+    const ordEl = form.elements['ordinal'];
+    if (!numEl || !ordEl) return;
+    const n = parseInt(numEl.value, 10);
+    if (!n || ordEl.value) return;
+    const map = ['', 'First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth'];
+    if (map[n]) ordEl.value = map[n];
+  }
+
+  function render() {
+    const data = {
+      amendmentNumber: val('amendmentNumber'),
+      ordinal: val('ordinal'),
+      agreementTitle: val('agreementTitle'),
+      studyNumber: val('studyNumber'),
+      dateOfLastSignature: fmtDate(val('dateOfLastSignature')),
+      effectiveDate: fmtDate(val('effectiveDate')),
+      sponsorName: val('sponsorName'),
+      originalAgreementDate: fmtDate(val('originalAgreementDate')),
+      institutionLegalName: val('institutionLegalName'),
+      entityDescription: val('entityDescription'),
+      institutionOperatingName: val('institutionOperatingName'),
+      institutionName: val('institutionName'),
+      exhibitDescription: val('exhibitDescription'),
+      originalSubjectNumber: val('originalSubjectNumber'),
+      newSubjectNumber: val('newSubjectNumber'),
+      priorPIName: val('priorPIName'),
+      newPIName: val('newPIName'),
+      irbApprovalDate: fmtDate(val('irbApprovalDate')),
+      additionalUnitsDescription: val('additionalUnitsDescription'),
+      amendmentEffectiveDate: fmtDate(val('amendmentEffectiveDate')),
+      formerLegalName: val('formerLegalName'),
+      newLegalName: val('newLegalName'),
+      shortFormPriorName: val('shortFormPriorName'),
+      partyName: val('partyName'),
+      priorAddress: val('priorAddress'),
+      newAddress: val('newAddress'),
+      sponsorSigName: val('sponsorSigName'),
+      sponsorSigTitle: val('sponsorSigTitle'),
+      institutionSigName: val('institutionSigName'),
+      institutionSigTitle: val('institutionSigTitle'),
+      agentName: val('agentName'),
+      piAckName: val('piAckName')
+    };
+
+    const recitals = {
+      pi: val('recital_pi'),
+      exhibitA_update: val('recital_exhibitA_update'),
+      addressName: val('recital_addressName'),
+      subjectIncrease: val('recital_subjectIncrease')
+    };
+    const clauses = {
+      pi: val('clause_pi'),
+      exhibitAUnits: val('clause_exhibitAUnits'),
+      nameChange: val('clause_nameChange'),
+      exhibitAReplace: val('clause_exhibitAReplace'),
+      addressChange: val('clause_addressChange')
+    };
+
+    const sigVariant = val('sigVariant');
+    const substantive = val('substantiveChange');
+
+    agentField.style.display = sigVariant === 'agent' ? 'block' : 'none';
+    piAckField.style.display = sigVariant === 'withPI' ? 'block' : 'none';
+
+    if (substantive) {
+      reviewFlag.style.display = 'inline-block';
+      reviewFlag.classList.add('warn');
+      legalFlag.classList.add('active');
+      legalReviewCard.classList.add('checked');
+    } else {
+      reviewFlag.style.display = 'none';
+      legalFlag.classList.remove('active');
+      legalReviewCard.classList.remove('checked');
+    }
+
+    let html = '';
+    html += '<div class="doc-title-block">';
+    html += '<div class="doc-title">Amendment #' + v(data.amendmentNumber, '[#]') + ' to ' + v(data.agreementTitle, '[AGREEMENT TITLE]') + '</div>';
+    html += '<div class="doc-subtitle">By and Between</div>';
+    html += '<div class="doc-parties">' + v(data.sponsorName, '[SPONSOR NAME]') + ' and ' + v(data.institutionName || data.institutionOperatingName || data.institutionLegalName, '[INSTITUTION NAME]') + '</div>';
+    html += '<div class="doc-study">For ' + v(data.studyNumber, '[STUDY / PROJECT / AGREEMENT NUMBER]') + '</div>';
+    html += '</div>';
+
+    html += '<p>This ' + v(data.ordinal, '[ORDINAL]') + ' Amendment (&ldquo;Amendment #' + v(data.amendmentNumber, '[#]') + '&rdquo;) to the ' + v(data.agreementTitle, '[AGREEMENT TITLE]') + ' (&ldquo;Agreement&rdquo;) is entered into as of ' + v(data.dateOfLastSignature, '[DATE OF LAST SIGNATURE]') + ' and is effective as of ' + v(data.effectiveDate, '[EFFECTIVE DATE / IRB APPROVAL DATE]') + ' (hereinafter, &ldquo;Effective Date&rdquo;) by and between ' + v(data.sponsorName, '[SPONSOR NAME]') + ' (&ldquo;Sponsor&rdquo;) and ' + v(data.institutionLegalName, '[INSTITUTION LEGAL NAME]') + ', a ' + v(data.entityDescription, '[ENTITY DESCRIPTION]') + ', for and on behalf of ' + v(data.institutionOperatingName, '[INSTITUTION OPERATING NAME]') + ' (&ldquo;Institution&rdquo;). Each party may be referred to individually as a &ldquo;Party&rdquo; and collectively as the &ldquo;Parties.&rdquo;</p>';
+
+    const recitalList = [];
+    recitalList.push('WHEREAS, the Parties entered into the ' + v(data.agreementTitle, '[AGREEMENT TITLE]') + ' (&ldquo;Agreement&rdquo;) on ' + v(data.originalAgreementDate, '[ORIGINAL AGREEMENT DATE]'));
+    if (recitals.pi) recitalList.push('WHEREAS, the Parties desire to amend the Agreement as of the Effective Date of this Amendment #' + v(data.amendmentNumber, '[#]') + ' in order to change the Principal Investigator of the Study as set forth herein');
+    if (recitals.exhibitA_update) recitalList.push('WHEREAS, Institution and Sponsor wish to amend the Agreement to update Exhibit A (' + v(data.exhibitDescription, '[EXHIBIT DESCRIPTION / STUDY BUDGET]') + ')');
+    if (recitals.addressName) recitalList.push('WHEREAS, Institution and Sponsor wish to amend the Agreement in order to update the Sponsor&rsquo;s or Institution&rsquo;s address/legal name');
+    if (recitals.subjectIncrease) recitalList.push('WHEREAS, the Parties agree to delete and replace Exhibit A in its entirety to increase from ' + v(data.originalSubjectNumber, '[ORIGINAL SUBJECT NUMBER]') + ' subjects up to ' + v(data.newSubjectNumber, '[NEW SUBJECT NUMBER]') + ' subjects, as set forth below, attached hereto, and incorporated herein by this reference');
+
+    recitalList.forEach(function(r, i) {
+      const isLast = i === recitalList.length - 1;
+      const conjunction = isLast ? '.' : '; and';
+      html += '<p class="recital">' + r + conjunction + '</p>';
+    });
+
+    html += '<p>NOW THEREFORE, in exchange for the mutual promises contained herein and for other good and valuable consideration, the receipt and adequacy of which is hereby acknowledged, the Parties hereto agree as follows:</p>';
+
+    const clauseList = [];
+    if (clauses.pi) {
+      clauseList.push(
+        'The Parties agree that the term Principal Investigator defined in the Agreement as ' + v(data.priorPIName, '[PRIOR PRINCIPAL INVESTIGATOR NAME]') + ' shall be revised to be defined as ' + v(data.newPIName, '[NEW PRINCIPAL INVESTIGATOR NAME]') + ' as of the ' + v(data.irbApprovalDate, '[IRB APPROVAL DATE]') + ' and is effective as of the ' + v(data.irbApprovalDate, '[IRB APPROVAL DATE]') + ' (&ldquo;IRB Effective Date&rdquo;). The Parties agree and acknowledge that ' + v(data.newPIName, '[NEW PRINCIPAL INVESTIGATOR NAME]') + ', as the new Principal Investigator, is subject to the terms and conditions of the Agreement and assumes the obligations of the Principal Investigator in relation to the Study under the provisions of the Agreement, in place of the previous Principal Investigator.<br><br>Pursuant to the terms of the Agreement, Institution shall remain liable for any claim related to the performance of previous Principal Investigator, ' + v(data.priorPIName, '[PRIOR PRINCIPAL INVESTIGATOR NAME]') + ', obligations under the Agreement which arose prior to the IRB Effective Date.'
+      );
+    }
+    if (clauses.exhibitAUnits) {
+      clauseList.push('Exhibit A (' + v(data.exhibitDescription, '[EXHIBIT DESCRIPTION / STUDY BUDGET]') + ') is hereby amended to include additional units for ' + v(data.additionalUnitsDescription, '[DESCRIPTION OF ADDITIONAL UNITS / FEES]') + ' and attached hereto.');
+    }
+    if (clauses.nameChange) {
+      clauseList.push('Name Change: Effective as of the ' + v(data.amendmentEffectiveDate, '[AMENDMENT EFFECTIVE DATE]') + ', ' + v(data.formerLegalName, '[FORMER LEGAL NAME]') + ' has changed its legal name to ' + v(data.newLegalName, '[NEW LEGAL NAME]') + '. All references in the Agreement to &ldquo;' + v(data.shortFormPriorName, '[SHORT FORM / PRIOR DEFINED NAME]') + ',&rdquo; or any similar designation shall be deemed to refer to ' + v(data.newLegalName, '[NEW LEGAL NAME]') + ', and such change shall apply throughout the Agreement, as amended hereby.');
+    }
+    if (clauses.exhibitAReplace) {
+      clauseList.push('The Parties agree to delete and replace Exhibit A in its entirety to increase from ' + v(data.originalSubjectNumber, '[ORIGINAL SUBJECT NUMBER]') + ' subjects up to ' + v(data.newSubjectNumber, '[NEW SUBJECT NUMBER]') + ' subjects, as set forth below, attached hereto, and incorporated herein by this reference.');
+    }
+    if (clauses.addressChange) {
+      clauseList.push(v(data.partyName, '[PARTY NAME]') + ' has changed its address from ' + v(data.priorAddress, '[PRIOR ADDRESS]') + ' to ' + v(data.newAddress, '[NEW ADDRESS]') + '.');
+    }
+
+    if (clauseList.length === 0) {
+      html += '<p style="color: var(--muted); font-style: italic;">[Select operative clauses in Step 4]</p>';
+    } else {
+      clauseList.forEach(function(c, i) {
+        html += '<div class="clause"><span class="clause-num">' + (i + 1) + '.</span>' + c + '</div>';
+      });
+    }
+
+    html += '<div class="doc-section-break"></div>';
+    html += '<p>Except as set forth in this Amendment #' + v(data.amendmentNumber, '[#]') + ', all other terms of the Agreement are unaffected and shall continue in full force and effect. If there is a conflict between this Amendment #' + v(data.amendmentNumber, '[#]') + ' and the Agreement respecting the subject matter herein, the terms of this Amendment #' + v(data.amendmentNumber, '[#]') + ' will prevail.</p>';
+    html += '<p>This Amendment #' + v(data.amendmentNumber, '[#]') + ' may be executed in one or more counterparts, each of which together shall constitute one and the same Amendment #' + v(data.amendmentNumber, '[#]') + '. For purposes of executing this Amendment #' + v(data.amendmentNumber, '[#]') + ', a facsimile, electronically signed, or electronic transmission copy (including a PDF image delivered via email) of this Amendment #' + v(data.amendmentNumber, '[#]') + ', including the signature pages, will be deemed an original.</p>';
+
+    html += '<p style="margin-top: 24px;">IN WITNESS WHEREOF, the parties hereto, intending to be legally bound, have executed this Amendment #' + v(data.amendmentNumber, '[#]') + ' by proper persons thereunto duly authorized.</p>';
+    html += renderSigBlock(data, sigVariant);
+
+    doc.innerHTML = html;
+  }
+
+  function renderSigBlock(data, variant) {
+    let h = '';
+    h += '<div class="signature-block sig-meta">';
+    h += '<div class="sig-label">Sponsor: ' + v(data.sponsorName, '[SPONSOR NAME]') + '</div>';
+    h += '<div>By: <span class="sig-line"></span></div>';
+    h += '<div>Name: ' + v(data.sponsorSigName, '[SPONSOR SIGNATORY NAME]') + '</div>';
+    h += '<div>Title: ' + v(data.sponsorSigTitle, '[SPONSOR SIGNATORY TITLE]') + '</div>';
+    h += '<div>Date: <span class="sig-line"></span></div>';
+    h += '</div>';
+
+    if (variant === 'agent') {
+      h += '<div class="signature-block sig-meta">';
+      h += '<div class="sig-label">Institution: By its agent ' + v(data.agentName, '[AGENT NAME]') + '</div>';
+      h += '<div>By: <span class="sig-line"></span></div>';
+      h += '<div>Name: ' + v(data.institutionSigName, '[INSTITUTION / AGENT SIGNATORY NAME]') + '</div>';
+      h += '<div>Title: ' + v(data.institutionSigTitle, '[INSTITUTION / AGENT SIGNATORY TITLE]') + '</div>';
+      h += '<div>Date: <span class="sig-line"></span></div>';
+      h += '</div>';
+    } else {
+      h += '<div class="signature-block sig-meta">';
+      h += '<div class="sig-label">Institution: ' + v(data.institutionName || data.institutionOperatingName || data.institutionLegalName, '[INSTITUTION NAME]') + '</div>';
+      h += '<div>By: <span class="sig-line"></span></div>';
+      h += '<div>Name: ' + v(data.institutionSigName, '[INSTITUTION SIGNATORY NAME]') + '</div>';
+      h += '<div>Title: ' + v(data.institutionSigTitle, '[INSTITUTION SIGNATORY TITLE]') + '</div>';
+      h += '<div>Date: <span class="sig-line"></span></div>';
+      h += '</div>';
+    }
+
+    if (variant === 'withPI') {
+      h += '<div class="signature-block sig-meta" style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--line-soft);">';
+      h += '<div style="font-style: italic; margin-bottom: 12px;">Read and Acknowledged</div>';
+      h += '<div class="sig-label">Principal Investigator: ' + v(data.piAckName, '[PRINCIPAL INVESTIGATOR NAME]') + '</div>';
+      h += '<div>By: <span class="sig-line"></span></div>';
+      h += '<div>Date: <span class="sig-line"></span></div>';
+      h += '</div>';
+    }
+    return h;
+  }
+
+  function syncCheckboxCards() {
+    document.querySelectorAll('.checkbox-card input[type="checkbox"]').forEach(function(cb) {
+      const card = cb.closest('.checkbox-card');
+      if (!card) return;
+      if (cb.disabled) return;
+      if (cb.checked) card.classList.add('checked');
+      else card.classList.remove('checked');
+    });
+    document.querySelectorAll('.radio-option input[type="radio"]').forEach(function(rb) {
+      const opt = rb.closest('.radio-option');
+      if (!opt) return;
+      if (rb.checked) opt.classList.add('checked');
+      else opt.classList.remove('checked');
+    });
+  }
+
+  // Map recitals to the operative clauses they imply.
+  // Address/name recital implies BOTH name-change and address-change clauses
+  // (user can uncheck whichever doesn't apply).
+  const recitalToClauses = {
+    'recital_pi':              ['clause_pi'],
+    'recital_exhibitA_update': ['clause_exhibitAUnits'],
+    'recital_addressName':     ['clause_nameChange', 'clause_addressChange'],
+    'recital_subjectIncrease': ['clause_exhibitAReplace']
+  };
+  // Reverse map: which recital does each clause belong to?
+  const clauseToRecital = {};
+  Object.keys(recitalToClauses).forEach(function(r) {
+    recitalToClauses[r].forEach(function(c) {
+      // For the address/name pair, both clauses share the same recital
+      clauseToRecital[c] = r;
+    });
+  });
+
+  function syncRecitalsAndClauses(changedName) {
+    // When a recital is checked/unchecked, sync its matched clauses
+    if (recitalToClauses[changedName]) {
+      const recitalEl = form.elements[changedName];
+      const isChecked = recitalEl.checked;
+      recitalToClauses[changedName].forEach(function(clauseName) {
+        const clauseEl = form.elements[clauseName];
+        if (clauseEl) clauseEl.checked = isChecked;
+      });
+      return;
+    }
+    // When a clause is checked, ensure its recital is also checked.
+    // When a clause is unchecked, only uncheck the recital if ALL its
+    // sibling clauses are also unchecked (handles the address/name pair).
+    if (clauseToRecital[changedName]) {
+      const recitalName = clauseToRecital[changedName];
+      const recitalEl = form.elements[recitalName];
+      const clauseEl = form.elements[changedName];
+      if (!recitalEl) return;
+      if (clauseEl.checked) {
+        recitalEl.checked = true;
+      } else {
+        const siblings = recitalToClauses[recitalName];
+        const anySiblingChecked = siblings.some(function(c) {
+          const el = form.elements[c];
+          return el && el.checked;
+        });
+        if (!anySiblingChecked) recitalEl.checked = false;
+      }
+    }
+  }
+
+  form.addEventListener('input', function(e) {
+    if (e.target.name === 'amendmentNumber') autoOrdinal();
+    syncCheckboxCards();
+    render();
+  });
+  form.addEventListener('change', function(e) {
+    if (e.target && e.target.type === 'checkbox' && e.target.name) {
+      syncRecitalsAndClauses(e.target.name);
+    }
+    syncCheckboxCards();
+    render();
+  });
+
+  document.getElementById('printBtn').addEventListener('click', function() { window.print(); });
+
+  document.getElementById('downloadHtml').addEventListener('click', function() {
+    const docHtml = doc.innerHTML;
+    const amendmentNum = val('amendmentNumber') || 'X';
+    const studyNum = (val('studyNumber') || 'amendment').replace(/[^a-zA-Z0-9]/g, '_');
+    const filename = 'Amendment_' + amendmentNum + '_' + studyNum + '.html';
+
+    const fullHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Amendment</title><style>body { font-family: Georgia, "Times New Roman", serif; max-width: 7.5in; margin: 0.5in auto; padding: 0 0.5in; line-height: 1.6; color: #000; font-size: 12pt; } .doc-title-block { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #000; } .doc-title { font-size: 14pt; font-weight: bold; text-transform: uppercase; margin-bottom: 8px; } .doc-subtitle { font-style: italic; margin-bottom: 6px; } .doc-parties { font-weight: bold; } .doc-study { font-size: 11pt; margin-top: 4px; } p, .recital { text-align: justify; margin-bottom: 12px; } .clause { margin-bottom: 14px; text-align: justify; } .clause-num { font-weight: bold; margin-right: 4px; } .signature-block { margin-top: 24px; page-break-inside: avoid; } .sig-line { display: inline-block; border-bottom: 1px solid #000; width: 3in; height: 1.2em; } .sig-meta { line-height: 1.8; } .sig-label { font-weight: bold; text-transform: uppercase; margin-bottom: 4px; } .doc-section-break { margin: 24px 0; } .placeholder { background: #fff4d6; padding: 1px 3px; font-family: monospace; font-size: 11pt; } @media print { .placeholder { background: transparent; } }</style></head><body>' + docHtml + '</body></html>';
+
+    const blob = new Blob([fullHtml], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('copyText').addEventListener('click', function() {
+    const text = doc.innerText;
+    const btn = this;
+    navigator.clipboard.writeText(text).then(function() {
+      const orig = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      setTimeout(function() { btn.textContent = orig; }, 1500);
+    }).catch(function() { alert('Copy failed. Select the preview and copy manually.'); });
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', function() {
+    if (confirm('Clear all fields and start over?')) {
+      form.reset();
+      syncCheckboxCards();
+      render();
+    }
+  });
+
+  syncCheckboxCards();
+  render();
+})();
+</script>
+
+
+</body></html>
